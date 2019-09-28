@@ -1,0 +1,26 @@
+// SCREEN SIZES
+$screen-min: (
+  s:  0px,
+  m:  768px,
+  l:  1224px,
+  xl: 1824px
+);
+
+$screen-max: (
+  s: map-get($screen-min, m) - 1px,
+  m: map-get($screen-min, l) - 1px,
+  l: map-get($screen-min, xl) - 1px,
+  x: 9999px
+);
+
+@mixin screen-start-at($size) {
+  @media (min-width: map-get($screen-min, $size)) {
+    @content
+  }
+};
+
+@mixin screen-between($start, $end) {
+  @media (min-width: map-get($screen-min, $start)) and (max-width: map-get($screen-max, $end)) {
+    @content
+  }
+};
